@@ -1,12 +1,15 @@
-import { Tabs } from "expo-router";
+import { Redirect, Tabs } from "expo-router";
 import React from "react";
 import { useColorScheme } from "@/hooks/useColorScheme";
-
 import { Text, View } from "react-native";
 
 import Icon from "react-native-vector-icons/Feather";
+import { useGlobalContext } from "../../context/GlobalProvider";
 
 export default function TabLayout() {
+  const { firstTime } = useGlobalContext();
+  if (firstTime == "YES") return <Redirect href="/welcome" />;
+
   const colorScheme = useColorScheme();
 
   const TabIcon = ({
